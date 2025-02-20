@@ -17,19 +17,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies
-        run: |
-          cd app  # Navigate to the app folder
-          npm install
-
-      - name: Build Project
-        run: |
-          cd app  # Navigate to the app folder
-          npm run build
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./app/build # Deploy the build output
-          destination_dir: app # Ensure it's served under /app/
+          publish_dir: ./ # Deploy the build output
