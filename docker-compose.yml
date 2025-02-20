@@ -1,30 +1,9 @@
-version: '3'
+
 services:
-  client:
-    build:
-      context: .  # Root context for both client and API
-      dockerfile: ./app/client/Dockerfile  # Point to the Dockerfile inside the client folder
-    ports:
-      - "80:80"  # Map port 80 of the container to port 80 on your local machine
-    networks:
-      - app-network
-    depends_on:
-      - api  # Ensure that the API is running before the client starts
-
-  api:
-    build:
-      context: .  # We use the root context for the API build
-      dockerfile: ./app/api/Dockerfile  # Point to the Dockerfile inside the api folder
-    ports:
-      - "5000:5000"  # Map port 5000 of the container to port 5000 on your local machine
-    networks:
-      - app-network
-    environment:
-      - NODE_ENV=production
+  api: 
+    build: ./api
+    container_name: portfolio_api_c
+    ports: 
+      - '4000:4000'
     volumes:
-      - ./app/api:/app  # Mount the API code into the container
-
-
-networks:
-  app-network:
-    driver: bridge
+      - ./api:/app
