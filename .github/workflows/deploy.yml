@@ -3,7 +3,7 @@ name: Deploy Portfolio
 on:
   push:
     branches:
-      - main # This is triggered when there is a push to the main branch
+      - main # Trigger on push to main branch
 
 jobs:
   build:
@@ -31,4 +31,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./app/build # Make sure to point to the build folder inside the app directory
+          publish_dir: ./app/build # Deploy the build output
+          destination_dir: app # Ensure it's served under /app/
